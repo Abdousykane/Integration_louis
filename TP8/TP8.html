@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP 8 : Canvas & Sprites | Portfolio</title>
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="portfolio-header">
+        <div class="brand">
+            <a href="../index.html"><strong>Portfolio</strong> S3</a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../TP1/tp1.html">TP 1</a></li>
+                <li><a href="../TP2/tp2.html">TP 2</a></li>
+                <li><a href="../TP3/tp3.html">TP 3</a></li>
+                <li><a href="../TP4/tp4.html">TP 4</a></li>
+                <li><a href="../TP5/tp5.html">TP 5</a></li>
+                <li><a href="../TP6/tp6.html">TP 6</a></li>
+                <li><a href="../TP7/tp7.html">TP 7</a></li>
+                <li><a href="tp8.html" class="active">TP 8</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="tp-main-container">
+        
+        <div class="tp-intro">
+            <h1>Travaux Pratiques N°8</h1>
+            <p>Objectif : Maîtriser l'animation par Sprites et l'interaction avancée avec l'API Canvas (lecture de pixels, transformation).</p>
+        </div>
+
+        <section class="exercice-section">
+            <div class="exercice-header">
+                <h2>Exercice 2 : Mario Run (CSS Animation)</h2>
+            </div>
+            
+            <div class="exercice-content">
+                <p>Animation cyclique d'un personnage (Sprite) et d'un décor défilant (Parallaxe simple).</p>
+                
+                <div class="render-box-content exo-border-container">
+                    <div id="game-canvas">
+                        <div id="mario"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analyse-block">
+                <h3>Analyse de l'exercice</h3>
+                <div class="analyse-grid">
+                    <div class="analyse-item">
+                        <h4>Connaissances</h4>
+                        <p>
+                            J'ai utilisé la fonction CSS <code>steps()</code> dans la propriété <code>animation-timing-function</code>. Contrairement à une interpolation linéaire, <code>steps()</code> permet de sauter d'une image à l'autre dans le sprite sheet, créant l'illusion de mouvement image par image.
+                            <br><br>
+                            L'année dernière, au 1er semestre on avait dû faire un exercice similaire mais on avait interdiction d'utiliser ce genre de fonction, ce qui nous contraignait à faire plusieurs fichier html pour chaque sprite. Ici tout est contenu dans une page.
+                        </p>
+                    </div>
+                    <div class="analyse-item">
+                        <h4>Critique</h4>
+                        <p>
+                            Cette méthode est très performante car elle ne demande aucun JavaScript. Le défilement infini du fond est géré par la répétition de l'image (<code>repeat-x</code>) et une translation de la position du background. 
+                            <br><br>
+                            <strong>Difficulté :</strong> 2/5.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="exercice-section">
+            <div class="exercice-header">
+                <h2>Exercice 3 : Interaction Souris & Sprites</h2>
+            </div>
+            
+            <div class="exercice-content">
+                <p>Cliquez dans le cadre bleu pour faire apparaître des éclaboussures.</p>
+                
+                <div class="render-box-content exo-border-container" style="display:flex; justify-content:center;">
+                    <div id="canvas-area"></div>
+                </div>
+            </div>
+
+            <div class="analyse-block">
+                <h3>Analyse de l'exercice</h3>
+                <div class="analyse-grid">
+                    <div class="analyse-item">
+                        <h4>Connaissances</h4>
+                        <p>
+                            J'ai combiné JavaScript pour la gestion des événements (<code>click</code>) et la création dynamique d'éléments DOM, avec CSS pour l'animation du sprite. Le positionnement se fait en calculant les coordonnées de la souris relatives au conteneur (<code>clientX - offsetLeft</code>).
+                        </p>
+                    </div>
+                    <div class="analyse-item">
+                        <h4>Critique</h4>
+                        <p>
+                            L'exercice renforce un peu plus mes connaissances et les outils pour créer une experience visuel intéressante. 
+                            <br><br>L'utilisation de <code>pointer-events: none</code> sur les gouttes est astucieuse pour qu'elles n'interfèrent pas avec les clics suivants. Le nettoyage automatique du DOM via <code>setTimeout</code> évite la surcharge mémoire.
+                            <br><br>
+                            <strong>Difficulté :</strong> 3/5.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="exercice-section">
+            <div class="exercice-header">
+                <h2>Exercice 4 : Pipette (GetImageData)</h2>
+            </div>
+            
+            <div class="exercice-content">
+                <p>Cliquez sur l'image pour récupérer la couleur du pixel.</p>
+                
+                <div class="render-box-content exo-border-container">
+                    <div id="container-ex4">
+                        <canvas id="imageCanvas"></canvas>
+                        
+                        <div style="display:flex; flex-direction:column; align-items:center;">
+                            <div id="colorDisplay"></div>
+                            <div id="colorInfo">
+                                <p>R : <span id="r-val">0</span></p>
+                                <p>G : <span id="g-val">0</span></p>
+                                <p>B : <span id="b-val">0</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analyse-block">
+                <h3>Analyse de l'exercice</h3>
+                <div class="analyse-grid">
+                    <div class="analyse-item">
+                        <h4>Connaissances</h4>
+                        <p>
+                            J'ai utilisé la méthode <code>ctx.getImageData(x, y, 1, 1)</code> de l'API Canvas. Elle renvoie un tableau contenant les valeurs Rouge, Vert, Bleu et Alpha du pixel ciblé.
+                        </p>
+                    </div>
+                    <div class="analyse-item">
+                        <h4>Critique</h4>
+                        <p>
+                            Je ne trouve pas cette exercice particulièrement intéressant même si on peut y trouver un intéret éducatif pour la maîtrise du gestion du flux, l'affichage dynamique et la structure des données d'une image numérique.
+                            <br><br>
+                            <strong>Difficulté :</strong> 3/5.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="exercice-section">
+            <div class="exercice-header">
+                <h2>Exercice 5 : Loupe Interactive</h2>
+            </div>
+            
+            <div class="exercice-content">
+                <p>Passez la souris sur l'image pour voir les détails agrandis.</p>
+                
+                <div class="render-box-content exo-border-container">
+                    <div id="container-ex5" style="position: relative; display: inline-block;">
+                        <canvas id="mainCanvas"></canvas>
+                        <canvas id="magnifierCanvas"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analyse-block">
+                <h3>Analyse de l'exercice</h3>
+                <div class="analyse-grid">
+                    <div class="analyse-item">
+                        <h4>Connaissances</h4>
+                        <p>
+                            J'ai utilisé la méthode <code>drawImage()</code> avec 9 paramètres (Source, ZoneSourceX, ZoneSourceY, LargeurSource, HauteurSource, DestX, DestY, LargeurDest, HauteurDest) pour découper une portion de l'image source (autour de la souris) et l'afficher agrandie dans le canvas de destination (la loupe).
+                        </p>
+                    </div>
+                    <div class="analyse-item">
+                        <h4>Critique</h4>
+                        <p>
+                            Le calcul des coordonnées relatives est crucial. La loupe suit le curseur en temps réel grâce à l'événement <code>mousemove</code>. Pour avoir une loupe ronde, j'ai dessiné un cercle (arc) puis utilisé <code>ctx.clip()</code>. Tout ce qui est dessiné après cette commande ne s'affiche que s'il est dans le cercle.
+                            <br><br>
+                            <strong>Difficulté :</strong> 4/5.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="tp-navigation">
+            <a href="../TP7/tp7.html" class="tp-btn prev-tp-btn">
+                <span class="arrow">←</span> TP Précédent
+            </a>
+            
+            <span></span>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>© 2026 | Portfolio réalisé par TATY Louis</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

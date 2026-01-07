@@ -1,0 +1,125 @@
+.image-container {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 0 auto; /* Centrage */
+    border: 1px solid #ddd;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.rideau-gauche,
+.rideau-droit {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-color: red;
+    transition: transform 1.5s ease-in-out;
+    z-index: 2;
+}
+
+.rideau-gauche {
+    left: 0;
+    transform: translateX(0);
+}
+
+.rideau-droit {
+    right: 0;
+    transform: translateX(0);
+}
+
+
+.image-container:hover .rideau-gauche {
+    transform: translateX(-100%);
+}
+
+.image-container:hover .rideau-droit {
+    transform: translateX(100%);
+}
+
+
+#image-deform {
+    transition: transform 0.8s ease-in-out;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.controls {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+#smash-banner {
+    width: 728px;
+    height: 90px;
+    background-color: black;
+    background-image: radial-gradient(circle at center, #444 0%, #000 80%);
+    position: relative;
+    overflow: hidden;
+    font-family: 'Russo One', sans-serif, Arial;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.smash-text {
+    color: #fff;
+    font-size: 1.8rem;
+    font-style: italic;
+    text-transform: uppercase;
+    z-index: 2;
+    margin-left: 20px;
+    transform: translateX(-400px);
+    animation: textSlideIn 1s cubic-bezier(0.17, 0.67, 0.43, 1.4) forwards 0.2s;
+}
+
+@keyframes textSlideIn { to { transform: translateX(0); } }
+
+.logo-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.smash-logo {
+    height: 80px;
+    width: auto;
+    animation: logoPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes logoPulse {
+    0% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(255,255,255,0.3)); }
+    100% { transform: scale(1.08); filter: drop-shadow(0 0 8px rgba(255,255,255,0.6)); }
+}
+
+.ball-container {
+    z-index: 2;
+    margin-right: 10px;
+}
+
+.smash-ball {
+    height: 70px;
+    width: auto;
+    animation: ballFloat 3s ease-in-out infinite alternate;
+}
+
+@keyframes ballFloat {
+    0% { transform: translateY(-5px) rotate(-5deg); }
+    100% { transform: translateY(5px) rotate(5deg); filter: brightness(1.3); }
+}
